@@ -1,0 +1,10 @@
+package com.project.newstart.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class SearchDetailRequest {
+    private String article_url;
+}
