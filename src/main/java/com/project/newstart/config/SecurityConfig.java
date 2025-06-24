@@ -62,8 +62,8 @@ public class SecurityConfig {
 
         config.setAllowCredentials(true);
         config.setAllowedOriginPatterns(List.of(
-                "https://newstart-project-444411.web.app",
-                "https://backend-7eac6k6zia-du.a.run.app"
+                "https://<비공개>",
+                "https://<비공개>"
         )); // React 배포 URL 허용
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")); // 모든 HTTP 메서드 허용
         config.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "X-Requested-With", "Origin")); // 모든 헤더 허용
@@ -120,15 +120,15 @@ public class SecurityConfig {
 
         // OAuth2.0 설정
         http.oauth2Login(oauth2 -> oauth2
-                .loginPage("https://newstart-project-444411.web.app/login")
-                .defaultSuccessUrl("https://newstart-project-444411.web.app/") // 로그인 성공 후 리다이렉트
+                .loginPage("https://<비공개>/login")
+                .defaultSuccessUrl("https://<비공개>/") // 로그인 성공 후 리다이렉트
                 .userInfoEndpoint(userInfo -> userInfo
                         .userService(customOAuth2UserService))
         );
 
         // Form 로그인 방식 설정
         http.formLogin(form -> form
-                .loginPage("https://newstart-project-444411.web.app/auth/email/login")
+                .loginPage("https://<비공개>/auth/email/login")
                 .loginProcessingUrl("/api/auth/email/loginProcess") // /api 경로로 변경
                 .successHandler((request, response, authentication) -> {
 
@@ -140,7 +140,7 @@ public class SecurityConfig {
 
 
                     // CORS 헤더 설정 제거 (rewrites를 통해 동일 출처로 요청 처리)
-                    //response.sendRedirect("https://newstart-project-444411.web.app/"); // 성공 시 React 앱으로 리디렉션
+                    //response.sendRedirect("https://<비공개>/"); // 성공 시 React 앱으로 리디렉션
                     //성공 시 JSON 형태로 프론트에 OK 반환
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
@@ -150,7 +150,7 @@ public class SecurityConfig {
                 })
                 .failureHandler((request, response, exception) -> {
                     // CORS 헤더 설정 제거 (rewrites를 통해 동일 출처로 요청 처리)
-                    response.sendRedirect("https://newstart-project-444411.web.app/auth/email/login?error"); // 실패 시 React 로그인 페이지로 리디렉션
+                    response.sendRedirect("https://<비공개>/auth/email/login?error"); // 실패 시 React 로그인 페이지로 리디렉션
                 })
                 .permitAll()
         );
@@ -158,7 +158,7 @@ public class SecurityConfig {
         // Logout 설정
         http.logout(logout -> logout
                 .logoutUrl("/api/logout") // /api 경로로 변경
-                .logoutSuccessUrl("https://newstart-project-444411.web.app/")
+                .logoutSuccessUrl("https://<비공개>/")
                 .deleteCookies("JSESSIONID", "remember-me")
                 .permitAll()
         );

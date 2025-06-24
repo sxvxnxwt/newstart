@@ -41,7 +41,7 @@ public class SearchService {
     public List<SearchDTO> getSearchResult(String keyword) throws ParseException {
 
         //검색 api url
-        String keywordApiUrl = "https://crawler-ai-search-7eac6k6zia-du.a.run.app/search";
+        String keywordApiUrl = "https://<비공개>/search";
 
         RestTemplate restTemplate = new RestTemplate();
         JSONParser parser = new JSONParser();
@@ -103,7 +103,7 @@ public class SearchService {
 
     public SearchDetailResponse getSearchDetail(SearchDetailRequest request) throws ParseException {
 
-        String detailApiUrl = "https://crawler-ai-search-7eac6k6zia-du.a.run.app/crawl_and_summarize";
+        String detailApiUrl = "https://<비공개>/crawl_and_summarize";
 
         RestTemplate restTemplate = new RestTemplate();
         JSONParser parser = new JSONParser();
